@@ -1,0 +1,14 @@
+{
+  "name": "@appbrewhouse/fabricator",
+  "version": "1.0.0",
+  "description": "Create boilerplate for a project",
+  "bin": "./index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4"
+  }
+}
