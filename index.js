@@ -24,60 +24,41 @@ function initProject() {
 }
 
 function setupOrganization(data) {
-  fs.mkdirSync(data.orgName);
+  if (!fs.existsSync(data.orgName)) {
+    fs.mkdirSync(data.orgName);
+  }
   fs.mkdirSync(`${data.orgName}/${data.appName}`);
 
-  // if (data.backendIsNeeded) {
-  //   const dir = `${data.orgName}/${data.appName}/backend`;
-  //   fs.mkdirSync(dir);
-  //   setupBackendApp(data, dir);
-  // }
-  // if (data.webappIsNeeded) {
-  //   const dir = `${data.orgName}/${data.appName}/webapp`;
-  //   fs.mkdirSync(dir);
-  //   setupWebAppFe(data, dir);
-  // }
-  // if (data.staticFeIsNeeded) {
-  //   const dir = `${data.orgName}/${data.appName}/staticfe`;
-  //   fs.mkdirSync(dir);
-  //   setupStaticFe(data);
-  // }
-  // if (data.cloudProvider) {
-  //   const dir = `${data.orgName}/${data.appName}/infra`;
-  //   fs.mkdirSync(dir);
-  //   setupInfra(data);
-  // }
-
-  const gitDir = `${data.orgName}/${data.appName}/infra`;
+  const gitDir = `${data.orgName}/${data.appName}/infra-temp`;
   setupGithubRepository(data, gitDir);
 }
 
-function setupBackendApp(data, dirPath) {
-  return new Promise((resolve, reject) => {
-    execSync("nest new . -p npm", { cwd: dirPath });
-    resolve();
-  });
-}
-function setupWebAppFe(data, dirPath) {
-  return new Promise((resolve, reject) => {
-    execSync("npx create-react-app .", { cwd: dirPath });
-    resolve();
-  });
-}
-function setupStaticFe(data, dirPath) {
-  return new Promise((resolve, reject) => {
-    execSync("npx gatsby new .", { cwd: dirPath });
-    resolve();
-  });
-}
-function setupInfra(data, dirPath) {
-  return new Promise((resolve, reject) => {
-    fs.mkdirSync(dirPath + "/packer");
-    fs.mkdirSync(dirPath + "/terraform");
-    fs.mkdirSync(dirPath + "/scripts");
+// function setupBackendApp(data, dirPath) {
+//   return new Promise((resolve, reject) => {
+//     execSync("nest new . -p npm", { cwd: dirPath });
+//     resolve();
+//   });
+// }
+// function setupWebAppFe(data, dirPath) {
+//   return new Promise((resolve, reject) => {
+//     execSync("npx create-react-app .", { cwd: dirPath });
+//     resolve();
+//   });
+// }
+// function setupStaticFe(data, dirPath) {
+//   return new Promise((resolve, reject) => {
+//     execSync("npx gatsby new .", { cwd: dirPath });
+//     resolve();
+//   });
+// }
+// function setupInfra(data, dirPath) {
+//   return new Promise((resolve, reject) => {
+//     fs.mkdirSync(dirPath + "/packer");
+//     fs.mkdirSync(dirPath + "/terraform");
+//     fs.mkdirSync(dirPath + "/scripts");
 
-    resolve();
-  });
-}
+//     resolve();
+//   });
+// }
 
 initProject();

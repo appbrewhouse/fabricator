@@ -40,11 +40,6 @@ const questions = [
       if (!validations.isRequired(value)) {
         return "Organization name is required";
       }
-      const dirName = value.toLowerCase();
-
-      if (fs.existsSync(value)) {
-        return `Directory with name ${dirName} already exists in the current location. Please move to a different directory or choose a diffrent name.`;
-      }
 
       return true;
     },
@@ -90,7 +85,7 @@ const questions = [
     type: "list",
     name: "cloudProvider",
     message: "Choose the cloud provider you would like to deploy to:",
-    choices: ["AWS", "Google Cloud", "Microsoft Azure", "Digital Ocean"],
+    choices: ["AWS"],
     filter(val) {
       return val.toLowerCase();
     },
